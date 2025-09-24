@@ -1,0 +1,3 @@
+
+[START] Test 'Tests/test_check_box.py::test_check_box_page' - 10:46:14
+[END] Test 'Tests/test_check_box.py::test_check_box_page' finished in 9.63 seconds.

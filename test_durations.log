@@ -1,0 +1,222 @@
+
+[START] Test 'Tests/test_tool_tips.py::test_button_tooltip' - 11:20:48
+[END] Test 'Tests/test_tool_tips.py::test_button_tooltip' finished in 0.05 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_field_tooltip' - 11:20:48
+[END] Test 'Tests/test_tool_tips.py::test_field_tooltip' finished in 0.00 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_button_tooltip' - 11:21:40
+[END] Test 'Tests/test_tool_tips.py::test_button_tooltip' finished in 0.06 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_field_tooltip' - 11:21:40
+[END] Test 'Tests/test_tool_tips.py::test_field_tooltip' finished in 0.03 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_button_tooltip' - 08:13:54
+[END] Test 'Tests/test_tool_tips.py::test_button_tooltip' finished in 15.83 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_field_tooltip' - 08:14:10
+[END] Test 'Tests/test_tool_tips.py::test_field_tooltip' finished in 8.05 seconds.
+
+[START] Test 'dia1/test_home_page.py::test_verify_demoqa_title' - 08:31:52
+[END] Test 'dia1/test_home_page.py::test_verify_demoqa_title' finished in 6.43 seconds.
+
+[START] Test 'dia2/test_buttons.py::test_double_click_button' - 08:35:59
+[END] Test 'dia2/test_buttons.py::test_double_click_button' finished in 7.30 seconds.
+
+[START] Test 'dia2/test_buttons.py::test_right_click_button' - 08:36:07
+[END] Test 'dia2/test_buttons.py::test_right_click_button' finished in 7.60 seconds.
+
+[START] Test 'dia2/test_buttons.py::test_dynamic_click_button' - 08:36:14
+[END] Test 'dia2/test_buttons.py::test_dynamic_click_button' finished in 9.72 seconds.
+
+[START] Test 'dia2/test_check_box.py::test_check_box' - 08:36:24
+[END] Test 'dia2/test_check_box.py::test_check_box' finished in 15.26 seconds.
+
+[START] Test 'dia2/test_check_box.py::test_check_box_command' - 08:36:39
+[END] Test 'dia2/test_check_box.py::test_check_box_command' finished in 15.32 seconds.
+
+[START] Test 'dia2/test_elements.py::test_navigate_to_elements_page' - 08:36:55
+[END] Test 'dia2/test_elements.py::test_navigate_to_elements_page' finished in 8.04 seconds.
+
+[START] Test 'dia2/test_elements.py::test_locate_by_id' - 08:37:03
+[END] Test 'dia2/test_elements.py::test_locate_by_id' finished in 8.09 seconds.
+
+[START] Test 'dia2/test_elements.py::test_locate_by_css_selector' - 08:37:11
+[END] Test 'dia2/test_elements.py::test_locate_by_css_selector' finished in 8.49 seconds.
+
+[START] Test 'dia2/test_elements.py::test_locate_by_xpath' - 08:37:19
+[END] Test 'dia2/test_elements.py::test_locate_by_xpath' finished in 8.65 seconds.
+
+[START] Test 'dia2/test_radio_button.py::test_interact_with_radio_button' - 08:37:28
+[END] Test 'dia2/test_radio_button.py::test_interact_with_radio_button' finished in 6.99 seconds.
+
+[START] Test 'dia2/test_screenshot.py::test_button_clicks_with_screenshots' - 08:37:35
+[END] Test 'dia2/test_screenshot.py::test_button_clicks_with_screenshots' finished in 8.00 seconds.
+
+[START] Test 'dia2/test_text_box.py::test_fill_text_box_form_and_validate' - 08:37:43
+[END] Test 'dia2/test_text_box.py::test_fill_text_box_form_and_validate' finished in 13.84 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:42:41
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 12.65 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:47:40
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 13.99 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:50:27
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 17.51 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:51:00
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 6.28 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:52:59
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 15.88 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:53:50
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 14.91 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 08:54:28
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 11.84 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 09:04:54
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 4.44 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 09:05:36
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 2.49 seconds.
+
+[START] Test 'dia3/test_dinamic_property.py::test_dinamic_button' - 09:06:49
+[END] Test 'dia3/test_dinamic_property.py::test_dinamic_button' finished in 11.86 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:31:57
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 11.22 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:32:08
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 29.45 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:36:20
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 10.03 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:36:30
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 9.10 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:40:49
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 119.36 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:42:49
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 9.88 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:43:39
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 10.02 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:43:49
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 9.79 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:52:35
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 10.01 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:52:45
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 9.33 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:53:49
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 91.29 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:55:20
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 10.15 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 09:58:17
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 9.25 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 09:58:27
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 9.25 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 10:07:21
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 10:08:46
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 8.51 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 10:08:54
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 8.60 seconds.
+
+[START] Test 'Tests/test_check_box.py::test_check_box_page' - 10:46:14
+[END] Test 'Tests/test_check_box.py::test_check_box_page' finished in 9.63 seconds.
+
+[START] Test 'Tests/test_elements.py::test_navigate_to_elements_page' - 10:46:24
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 10:47:05
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 8.51 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 10:47:13
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 13.15 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 11:06:10
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 10.29 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 11:06:21
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 8.57 seconds.
+
+[START] Test 'Tests/test_check_box.py::test_check_box_page' - 11:14:29
+[END] Test 'Tests/test_check_box.py::test_check_box_page' finished in 7.41 seconds.
+
+[START] Test 'Tests/test_elements.py::test_navigate_to_elements_page' - 11:14:37
+[END] Test 'Tests/test_elements.py::test_navigate_to_elements_page' finished in 7.60 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_css_selector' - 11:14:44
+[END] Test 'Tests/test_elements.py::test_locate_by_css_selector' finished in 7.13 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_id' - 11:14:51
+[END] Test 'Tests/test_elements.py::test_locate_by_id' finished in 6.96 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_xpath' - 11:14:58
+
+[START] Test 'Tests/test_check_box.py::test_check_box_page' - 11:15:46
+[END] Test 'Tests/test_check_box.py::test_check_box_page' finished in 21.75 seconds.
+
+[START] Test 'Tests/test_elements.py::test_navigate_to_elements_page' - 11:16:08
+[END] Test 'Tests/test_elements.py::test_navigate_to_elements_page' finished in 7.86 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_css_selector' - 11:16:16
+[END] Test 'Tests/test_elements.py::test_locate_by_css_selector' finished in 109.37 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_id' - 11:18:05
+[END] Test 'Tests/test_elements.py::test_locate_by_id' finished in 7.65 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_xpath' - 11:18:13
+[END] Test 'Tests/test_elements.py::test_locate_by_xpath' finished in 28.68 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 11:18:41
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 8.51 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 11:18:50
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 94.75 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_button_tooltip' - 11:20:25
+[END] Test 'Tests/test_tool_tips.py::test_button_tooltip' finished in 7.87 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_field_tooltip' - 11:20:33
+[END] Test 'Tests/test_tool_tips.py::test_field_tooltip' finished in 7.22 seconds.
+
+[START] Test 'Tests/test_check_box.py::test_check_box_page' - 11:22:07
+[END] Test 'Tests/test_check_box.py::test_check_box_page' finished in 7.51 seconds.
+
+[START] Test 'Tests/test_elements.py::test_navigate_to_elements_page' - 11:22:14
+[END] Test 'Tests/test_elements.py::test_navigate_to_elements_page' finished in 6.99 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_css_selector' - 11:22:21
+[END] Test 'Tests/test_elements.py::test_locate_by_css_selector' finished in 48.22 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_id' - 11:23:10
+[END] Test 'Tests/test_elements.py::test_locate_by_id' finished in 7.75 seconds.
+
+[START] Test 'Tests/test_elements.py::test_locate_by_xpath' - 11:23:17
+[END] Test 'Tests/test_elements.py::test_locate_by_xpath' finished in 37.44 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' - 11:23:55
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data0]' finished in 9.59 seconds.
+
+[START] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' - 11:24:04
+[END] Test 'Tests/test_practice_form.py::test_fill_practice_form[data1]' finished in 8.67 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_button_tooltip' - 11:24:13
+[END] Test 'Tests/test_tool_tips.py::test_button_tooltip' finished in 9.20 seconds.
+
+[START] Test 'Tests/test_tool_tips.py::test_field_tooltip' - 11:24:22
+[END] Test 'Tests/test_tool_tips.py::test_field_tooltip' finished in 8.18 seconds.

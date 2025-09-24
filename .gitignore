@@ -1,2 +1,9 @@
 myproject/
 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.png
+*.coverage
+*.DS_Store

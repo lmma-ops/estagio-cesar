@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 class TextBoxPage:
     def __init__(self, driver):
+        """inicializa a pagina de text box"""
         self.driver = driver
         self.url = "https://demoqa.com/text-box"
         # Locators

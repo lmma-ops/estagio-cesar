@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 class CheckboxPage:
     def __init__(self, driver):
+        """faz a inicializacao da pagina de checkbox"""
         self.driver = driver
         self.url = "https://demoqa.com/checkbox"
         self.expand_all_button = (By.CSS_SELECTOR, "button[title='Expand all']")

@@ -1,20 +1,15 @@
 import pytest
-import json
 from selenium import webdriver
 import time
 from pathlib import Path
 import os
 import pytest_html 
 
-@pytest.fixture(scope="session")
-def test_data():
-    with open("data/test_data.json") as f:
-        return json.load(f)
     
 LOG_FILE = Path("test_durations.log")
-
 @pytest.hookimpl(tryfirst=True)
 def pytest_runtest_setup(item):
+    """executa o setup antes de cada teste e registra o tempo de duracao"""
     item.start_time = time.time()
     item.start_str = time.strftime("%H:%M:%S", time.localtime())
     msg = f"\n[START] Test '{item.nodeid}' - {item.start_str}"
@@ -23,21 +18,25 @@ def pytest_runtest_setup(item):
     with LOG_FILE.open("a", encoding="utf-8") as f:
         f.write(msg + "\n")
 
+
 @pytest.hookimpl(trylast=True)
 def pytest_runtest_teardown(item):
+    """executa o teardown apos cada teste e registra o tempo de termino e duracao"""
     duration = time.time() - item.start_time
     msg = f"[END] Test '{item.nodeid}' finished in {duration:.2f} seconds."
     print(msg)
 
-    # salva em arquivo
+    
     with LOG_FILE.open("a", encoding="utf-8") as f:
         f.write(msg + "\n")
-    
+
 def pytest_addoption(parser):
+    """adiciona a opcao de linha de comando para selecionar o navegador"""
     parser.addoption("--browser", action="store", default="chrome", help="browser to execute tests (chrome or firefox)")
 
 @pytest.fixture
 def driver(request):
+    """cria a fixture do driver com base na opcao de linha de comando"""
     browser = request.config.getoption("--browser").lower()
     if browser == "chrome":
         driver_instance = webdriver.Chrome()
@@ -52,6 +51,7 @@ def driver(request):
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+    """adiciona screenshots para o relatorio HTML em caso de falha"""
     outcome = yield
     report = outcome.get_result()
     extra = getattr(report, "extra", [])

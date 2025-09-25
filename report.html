@@ -3,11 +3,332 @@
   <head>
     <meta charset="utf-8"/>
     <title id="head-title">report.html</title>
-      <link href="assets/style.css" rel="stylesheet" type="text/css"/>
+      <style type="text/css">body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  vertical-align: top;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#environment ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+.col-links__extra {
+  margin-right: 3px;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.logwrapper {
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+.logwrapper.expanded {
+  max-height: none;
+}
+.logwrapper.expanded .logexpander:after {
+  content: "collapse [-]";
+}
+.logwrapper .logexpander {
+  z-index: 1;
+  position: sticky;
+  top: 10px;
+  width: max-content;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 7px;
+  margin: 10px 0 10px calc(100% - 80px);
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.logwrapper .logexpander:after {
+  content: "expand [+]";
+}
+.logwrapper .logexpander:hover {
+  color: #000;
+  border-color: #000;
+}
+.logwrapper .log {
+  min-height: 40px;
+  position: relative;
+  top: -50px;
+  height: calc(100% + 50px);
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  padding-right: 80px;
+  white-space: pre-wrap;
+}
+
+div.media {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin: 0 5px;
+  overflow: hidden;
+  width: 320px;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: 25px auto 25px;
+  align-items: center;
+  flex: 1 1;
+  overflow: hidden;
+  height: 200px;
+}
+
+.media-container--fullscreen {
+  grid-template-columns: 0px auto 0px;
+}
+
+.media-container__nav--right,
+.media-container__nav--left {
+  text-align: center;
+  cursor: pointer;
+}
+
+.media-container__viewport {
+  cursor: pointer;
+  text-align: center;
+  height: inherit;
+}
+.media-container__viewport img,
+.media-container__viewport video {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.media__name,
+.media__counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 25px;
+  align-items: center;
+}
+
+.collapsible td:not(.col-links) {
+  cursor: pointer;
+}
+.collapsible td:not(.col-links):hover::after {
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.col-result {
+  width: 130px;
+}
+.col-result:hover::after {
+  content: " (hide details)";
+}
+
+.col-result.collapsed:hover::after {
+  content: " (show details)";
+}
+
+#environment-header h2:hover::after {
+  content: " (hide details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#environment-header.collapsed h2:hover::after {
+  content: " (show details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+.sortable.desc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: -12.5px;
+  border: 10px solid #4caf50;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.sortable.asc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: 12.5px;
+  border: 10px solid #4caf50;
+  border-top: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hidden, .summary__reload__button.hidden {
+  display: none;
+}
+
+.summary__data {
+  flex: 0 0 550px;
+}
+.summary__reload {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+.summary__reload__button {
+  flex: 0 0 300px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  background-color: #4caf50;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.summary__reload__button:hover {
+  background-color: #46a049;
+}
+.summary__spacer {
+  flex: 0 0 550px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters,
+.collapse {
+  display: flex;
+  align-items: center;
+}
+.filters button,
+.collapse button {
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filters button:hover,
+.collapse button:hover {
+  color: #ccc;
+}
+
+.filter__label {
+  margin-right: 10px;
+}
+
+      </style>
+    
   </head>
   <body>
     <h1 id="title">report.html</h1>
-    <p>Report generated on 24-Sep-2025 at 08:37:57 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+    <p>Report generated on 25-Sep-2025 at 10:27:20 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
         v4.1.1</p>
     <div id="environment-header">
       <h2>Environment</h2>
@@ -61,7 +382,7 @@
         <h2>Summary</h2>
         <div class="additional-summary prefix">
         </div>
-        <p class="run-count">12 tests took 00:01:57.</p>
+        <p class="run-count">9 tests took 00:01:12.</p>
         <p class="filter">(Un)check the boxes to filter the results.</p>
         <div class="summary__reload">
           <div class="summary__reload__button hidden" onclick="location.reload()">
@@ -71,10 +392,10 @@
         <div class="summary__spacer"></div>
         <div class="controls">
           <div class="filters">
-            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" />
-            <span class="failed">1 Failed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" disabled/>
+            <span class="failed">0 Failed,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" />
-            <span class="passed">11 Passed,</span>
+            <span class="passed">9 Passed,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled/>
             <span class="skipped">0 Skipped,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled/>
@@ -108,7 +429,7 @@
     </table>
   </body>
   <footer>
-    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.9.6&#34;, &#34;Platform&#34;: &#34;macOS-15.6.1-x86_64-i386-64bit&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.4.2&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;}}, &#34;tests&#34;: {&#34;dia2/test_buttons.py::test_double_click_button&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_buttons.py::test_double_click_button&#34;, &#34;duration&#34;: &#34;00:00:07&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_buttons.py::test_double_click_button&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:07&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_buttons.py::test_double_click_button&amp;#x27; - 08:35:59\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_buttons.py::test_double_click_button&amp;#x27; finished in 7.30 seconds.\n&#34;}], &#34;dia2/test_buttons.py::test_right_click_button&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_buttons.py::test_right_click_button&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_buttons.py::test_right_click_button&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_buttons.py::test_right_click_button&amp;#x27; - 08:36:07\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_buttons.py::test_right_click_button&amp;#x27; finished in 7.60 seconds.\n&#34;}], &#34;dia2/test_buttons.py::test_dynamic_click_button&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_buttons.py::test_dynamic_click_button&#34;, &#34;duration&#34;: &#34;00:00:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_buttons.py::test_dynamic_click_button&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_buttons.py::test_dynamic_click_button&amp;#x27; - 08:36:14\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_buttons.py::test_dynamic_click_button&amp;#x27; finished in 9.72 seconds.\n&#34;}], &#34;dia2/test_check_box.py::test_check_box&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_check_box.py::test_check_box&#34;, &#34;duration&#34;: &#34;00:00:15&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_check_box.py::test_check_box&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:15&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_check_box.py::test_check_box&amp;#x27; - 08:36:24\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_check_box.py::test_check_box&amp;#x27; finished in 15.26 seconds.\n&#34;}], &#34;dia2/test_check_box.py::test_check_box_command&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_check_box.py::test_check_box_command&#34;, &#34;duration&#34;: &#34;00:00:15&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_check_box.py::test_check_box_command&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:15&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_check_box.py::test_check_box_command&amp;#x27; - 08:36:39\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_check_box.py::test_check_box_command&amp;#x27; finished in 15.32 seconds.\n&#34;}], &#34;dia2/test_elements.py::test_navigate_to_elements_page&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_elements.py::test_navigate_to_elements_page&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_elements.py::test_navigate_to_elements_page&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_elements.py::test_navigate_to_elements_page&amp;#x27; - 08:36:55\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_elements.py::test_navigate_to_elements_page&amp;#x27; finished in 8.04 seconds.\n&#34;}], &#34;dia2/test_elements.py::test_locate_by_id&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_elements.py::test_locate_by_id&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_elements.py::test_locate_by_id&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_elements.py::test_locate_by_id&amp;#x27; - 08:37:03\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_elements.py::test_locate_by_id&amp;#x27; finished in 8.09 seconds.\n&#34;}], &#34;dia2/test_elements.py::test_locate_by_css_selector&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_elements.py::test_locate_by_css_selector&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_elements.py::test_locate_by_css_selector&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_elements.py::test_locate_by_css_selector&amp;#x27; - 08:37:11\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_elements.py::test_locate_by_css_selector&amp;#x27; finished in 8.49 seconds.\n&#34;}], &#34;dia2/test_elements.py::test_locate_by_xpath&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_elements.py::test_locate_by_xpath&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_elements.py::test_locate_by_xpath&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_elements.py::test_locate_by_xpath&amp;#x27; - 08:37:19\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_elements.py::test_locate_by_xpath&amp;#x27; finished in 8.65 seconds.\n&#34;}], &#34;dia2/test_radio_button.py::test_interact_with_radio_button&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_radio_button.py::test_interact_with_radio_button&#34;, &#34;duration&#34;: &#34;00:00:07&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_radio_button.py::test_interact_with_radio_button&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:07&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_radio_button.py::test_interact_with_radio_button&amp;#x27; - 08:37:28\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_radio_button.py::test_interact_with_radio_button&amp;#x27; finished in 6.99 seconds.\n&#34;}], &#34;dia2/test_screenshot.py::test_button_clicks_with_screenshots&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;dia2/test_screenshot.py::test_button_clicks_with_screenshots&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_screenshot.py::test_button_clicks_with_screenshots&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_screenshot.py::test_button_clicks_with_screenshots&amp;#x27; - 08:37:35\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_screenshot.py::test_button_clicks_with_screenshots&amp;#x27; finished in 8.00 seconds.\n&#34;}], &#34;dia2/test_text_box.py::test_fill_text_box_form_and_validate&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;dia2/test_text_box.py::test_fill_text_box_form_and_validate&#34;, &#34;duration&#34;: &#34;00:00:14&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;dia2/test_text_box.py::test_fill_text_box_form_and_validate&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:14&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;driver = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;add8b121145fe3a6d6dc9495c76abaf1&amp;quot;)&amp;gt;\n\n    def test_fill_text_box_form_and_validate(driver):\n        driver.get(&amp;quot;https://demoqa.com/text-box&amp;quot;)\n    \n        # Fill out the form\n        full_name_input = driver.find_element(By.ID, &amp;quot;userName&amp;quot;)\n        email_input = driver.find_element(By.ID, &amp;quot;userEmail&amp;quot;)\n        current_address_input = driver.find_element(By.ID, &amp;quot;currentAddress&amp;quot;)\n        permanent_address_input = driver.find_element(By.ID, &amp;quot;permanentAddress&amp;quot;)\n        submit_button = driver.find_element(By.ID, &amp;quot;submit&amp;quot;)\n    \n        # Test data for the form\n        full_name = &amp;quot;Rodrigo&amp;quot;\n        email = &amp;quot;rgpe@cesar.org.br&amp;quot;\n        current_address = &amp;quot;Rua Bar\u00e3o de Souza Le\u00e3o, s/n&amp;quot;\n        permanent_address = &amp;quot;Avenida Boa Viagem, s/n&amp;quot;\n    \n        # Fill the form\n        full_name_input.send_keys(full_name)\n        email_input.send_keys(email)\n        current_address_input.send_keys(current_address)\n        permanent_address_input.send_keys(permanent_address)\n        time.sleep(2)\n        permanent_address_input.clear()\n        time.sleep(3)\n        permanent_address = &amp;quot;Avenida Conselheiro Aguiar, s/n&amp;quot;\n        permanent_address_input.send_keys(permanent_address)\n    \n        # Click on submit button\n        # driver.execute_script(&amp;quot;arguments[0].scrollIntoView(true);&amp;quot;, submit_button)\n&amp;gt;       submit_button.click()\n\ndia2/test_text_box.py:33: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nmyproject/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py:120: in click\n    self._execute(Command.CLICK_ELEMENT)\nmyproject/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py:573: in _execute\n    return self._parent.execute(command, params)\nmyproject/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py:458: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = &amp;lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x10b5ed430&amp;gt;\nresponse = {&amp;#x27;status&amp;#x27;: 400, &amp;#x27;value&amp;#x27;: &amp;#x27;{&amp;quot;value&amp;quot;:{&amp;quot;error&amp;quot;:&amp;quot;element click intercepted&amp;quot;,&amp;quot;message&amp;quot;:&amp;quot;element click intercepted: Element ...ff805d1ce59 _pthread_start + 115\\\\n26  libsystem_pthread.dylib             0x00007ff805d18857 thread_start + 15\\\\n&amp;quot;}}&amp;#x27;}\n\n    def check_response(self, response: dict[str, Any]) -&amp;gt; None:\n        &amp;quot;&amp;quot;&amp;quot;Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        &amp;quot;&amp;quot;&amp;quot;\n        status = response.get(&amp;quot;status&amp;quot;, None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(&amp;quot;message&amp;quot;, &amp;quot;&amp;quot;)\n        screen: str = response.get(&amp;quot;screen&amp;quot;, &amp;quot;&amp;quot;)\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(&amp;quot;value&amp;quot;, None)\n            if value_json and isinstance(value_json, str):\n                try:\n                    value = json.loads(value_json)\n                    if isinstance(value, dict):\n                        if len(value) == 1:\n                            value = value[&amp;quot;value&amp;quot;]\n                        status = value.get(&amp;quot;error&amp;quot;, None)\n                        if not status:\n                            status = value.get(&amp;quot;status&amp;quot;, ErrorCode.UNKNOWN_ERROR)\n                            message = value.get(&amp;quot;value&amp;quot;) or value.get(&amp;quot;message&amp;quot;)\n                            if not isinstance(message, str):\n                                value = message\n                                message = message.get(&amp;quot;message&amp;quot;)\n                        else:\n                            message = value.get(&amp;quot;message&amp;quot;, None)\n                except ValueError:\n                    pass\n    \n        exception_class: type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(&amp;quot;__&amp;quot;)]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[&amp;quot;value&amp;quot;]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == &amp;quot;&amp;quot; and &amp;quot;message&amp;quot; in value:\n            message = value[&amp;quot;message&amp;quot;]\n    \n        screen = None  # type: ignore[assignment]\n        if &amp;quot;screen&amp;quot; in value:\n            screen = value[&amp;quot;screen&amp;quot;]\n    \n        stacktrace = None\n        st_value = value.get(&amp;quot;stackTrace&amp;quot;) or value.get(&amp;quot;stacktrace&amp;quot;)\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(&amp;quot;\\n&amp;quot;)\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(&amp;quot;lineNumber&amp;quot;, &amp;quot;&amp;quot;)\n                        file = frame.get(&amp;quot;fileName&amp;quot;, &amp;quot;&amp;lt;anonymous&amp;gt;&amp;quot;)\n                        if line:\n                            file = f&amp;quot;{file}:{line}&amp;quot;\n                        meth = frame.get(&amp;quot;methodName&amp;quot;, &amp;quot;&amp;lt;anonymous&amp;gt;&amp;quot;)\n                        if &amp;quot;className&amp;quot; in frame:\n                            meth = f&amp;quot;{frame[&amp;#x27;className&amp;#x27;]}.{meth}&amp;quot;\n                        msg = &amp;quot;    at %s (%s)&amp;quot;\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if &amp;quot;data&amp;quot; in value:\n                alert_text = value[&amp;quot;data&amp;quot;].get(&amp;quot;text&amp;quot;)\n            elif &amp;quot;alert&amp;quot; in value:\n                alert_text = value[&amp;quot;alert&amp;quot;].get(&amp;quot;text&amp;quot;)\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n&amp;gt;       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &amp;lt;button id=&amp;quot;submit&amp;quot; type=&amp;quot;button&amp;quot; class=&amp;quot;btn btn-primary&amp;quot;&amp;gt;...&amp;lt;/button&amp;gt; is not clickable at point (1198, 782). Other element would receive the click: &amp;lt;iframe frameborder=&amp;quot;0&amp;quot; src=&amp;quot;https://e2443da336ade22e99865f1905661d0b.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html&amp;quot; id=&amp;quot;google_ads_iframe_/21849154601,22343295815/Ad.Plus-Anchor_0&amp;quot; title=&amp;quot;3rd party ad content&amp;quot; name=&amp;quot;&amp;quot; scrolling=&amp;quot;no&amp;quot; marginwidth=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; width=&amp;quot;809&amp;quot; height=&amp;quot;100&amp;quot; data-is-safeframe=&amp;quot;true&amp;quot; sandbox=&amp;quot;allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation&amp;quot; allow=&amp;quot;private-state-token-redemption;attribution-reporting&amp;quot; aria-label=&amp;quot;Advertisement&amp;quot; tabindex=&amp;quot;0&amp;quot; data-google-container-id=&amp;quot;1&amp;quot; style=&amp;quot;border: 0px; vertical-align: bottom;&amp;quot; data-load-complete=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;\nE         (Session info: chrome=140.0.7339.186); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception\nE       Stacktrace:\nE       0   chromedriver                        0x000000010aca0f08 chromedriver + 5934856\nE       1   chromedriver                        0x000000010ac98c9a chromedriver + 5901466\nE       2   chromedriver                        0x000000010a764ade chromedriver + 445150\nE       3   chromedriver                        0x000000010a7c22ef chromedriver + 828143\nE       4   chromedriver                        0x000000010a7c0046 chromedriver + 819270\nE       5   chromedriver                        0x000000010a7bd0dd chromedriver + 807133\nE       6   chromedriver                        0x000000010a7bc22d chromedriver + 803373\nE       7   chromedriver                        0x000000010a7adf92 chromedriver + 745362\nE       8   chromedriver                        0x000000010a7e2732 chromedriver + 960306\nE       9   chromedriver                        0x000000010a7ad8c8 chromedriver + 743624\nE       10  chromedriver                        0x000000010a7e28ee chromedriver + 960750\nE       11  chromedriver                        0x000000010a8080e1 chromedriver + 1114337\nE       12  chromedriver                        0x000000010a7e2503 chromedriver + 959747\nE       13  chromedriver                        0x000000010a7ab731 chromedriver + 735025\nE       14  chromedriver                        0x000000010a7acee1 chromedriver + 741089\nE       15  chromedriver                        0x000000010ac6a360 chromedriver + 5710688\nE       16  chromedriver                        0x000000010ac6cc00 chromedriver + 5721088\nE       17  chromedriver                        0x000000010ac6c77b chromedriver + 5719931\nE       18  chromedriver                        0x000000010ac6d0a5 chromedriver + 5722277\nE       19  chromedriver                        0x000000010ac4fe97 chromedriver + 5602967\nE       20  chromedriver                        0x000000010ac6d372 chromedriver + 5722994\nE       21  chromedriver                        0x000000010ac43584 chromedriver + 5551492\nE       22  chromedriver                        0x000000010ac88d28 chromedriver + 5836072\nE       23  chromedriver                        0x000000010ac88e85 chromedriver + 5836421\nE       24  chromedriver                        0x000000010ac98823 chromedriver + 5900323\nE       25  libsystem_pthread.dylib             0x00007ff805d1ce59 _pthread_start + 115\nE       26  libsystem_pthread.dylib             0x00007ff805d18857 thread_start + 15\n\nmyproject/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py:232: ElementClickInterceptedException\n\n---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;dia2/test_text_box.py::test_fill_text_box_form_and_validate&amp;#x27; - 08:37:43\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;dia2/test_text_box.py::test_fill_text_box_form_and_validate&amp;#x27; finished in 13.84 seconds.\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.9.6&#34;, &#34;Platform&#34;: &#34;macOS-15.6.1-x86_64-i386-64bit&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.4.2&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;allure-pytest&#34;: &#34;2.15.0&#34;, &#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;cov&#34;: &#34;7.0.0&#34;}}, &#34;tests&#34;: {&#34;Tests/test_check_box.py::test_check_box_page&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_check_box.py::test_check_box_page&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_check_box.py::test_check_box_page&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_check_box.py::test_check_box_page&amp;#x27; - 10:26:07\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_check_box.py::test_check_box_page&amp;#x27; finished in 9.33 seconds.\n&#34;}], &#34;Tests/test_elements.py::test_navigate_to_elements_page&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_elements.py::test_navigate_to_elements_page&#34;, &#34;duration&#34;: &#34;00:00:07&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_elements.py::test_navigate_to_elements_page&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:07&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_elements.py::test_navigate_to_elements_page&amp;#x27; - 10:26:17\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_elements.py::test_navigate_to_elements_page&amp;#x27; finished in 7.00 seconds.\n&#34;}], &#34;Tests/test_elements.py::test_locate_by_css_selector&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_elements.py::test_locate_by_css_selector&#34;, &#34;duration&#34;: &#34;00:00:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_elements.py::test_locate_by_css_selector&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_elements.py::test_locate_by_css_selector&amp;#x27; - 10:26:24\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_elements.py::test_locate_by_css_selector&amp;#x27; finished in 9.65 seconds.\n&#34;}], &#34;Tests/test_elements.py::test_locate_by_id&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_elements.py::test_locate_by_id&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_elements.py::test_locate_by_id&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_elements.py::test_locate_by_id&amp;#x27; - 10:26:33\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_elements.py::test_locate_by_id&amp;#x27; finished in 7.61 seconds.\n&#34;}], &#34;Tests/test_elements.py::test_locate_by_xpath&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_elements.py::test_locate_by_xpath&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_elements.py::test_locate_by_xpath&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_elements.py::test_locate_by_xpath&amp;#x27; - 10:26:41\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_elements.py::test_locate_by_xpath&amp;#x27; finished in 7.61 seconds.\n&#34;}], &#34;Tests/test_practice_form.py::test_fill_practice_form[data0]&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_practice_form.py::test_fill_practice_form[data0]&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_practice_form.py::test_fill_practice_form[data0]&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_practice_form.py::test_fill_practice_form[data0]&amp;#x27; - 10:26:49\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_practice_form.py::test_fill_practice_form[data0]&amp;#x27; finished in 9.19 seconds.\n&#34;}], &#34;Tests/test_practice_form.py::test_fill_practice_form[data1]&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_practice_form.py::test_fill_practice_form[data1]&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_practice_form.py::test_fill_practice_form[data1]&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_practice_form.py::test_fill_practice_form[data1]&amp;#x27; - 10:26:58\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_practice_form.py::test_fill_practice_form[data1]&amp;#x27; finished in 7.64 seconds.\n&#34;}], &#34;Tests/test_tool_tips.py::test_button_tooltip&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_tool_tips.py::test_button_tooltip&#34;, &#34;duration&#34;: &#34;00:00:07&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_tool_tips.py::test_button_tooltip&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:07&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_tool_tips.py::test_button_tooltip&amp;#x27; - 10:27:05\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_tool_tips.py::test_button_tooltip&amp;#x27; finished in 6.99 seconds.\n&#34;}], &#34;Tests/test_tool_tips.py::test_field_tooltip&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;Tests/test_tool_tips.py::test_field_tooltip&#34;, &#34;duration&#34;: &#34;00:00:07&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;Tests/test_tool_tips.py::test_field_tooltip&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:07&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\n[START] Test &amp;#x27;Tests/test_tool_tips.py::test_field_tooltip&amp;#x27; - 10:27:12\n--------------------------- Captured stdout teardown ---------------------------\n[END] Test &amp;#x27;Tests/test_tool_tips.py::test_field_tooltip&amp;#x27; finished in 7.11 seconds.\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
     <script>
       (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
